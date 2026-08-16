@@ -32,8 +32,3 @@ def sigmoid_neuron():
     weighted_sum -= threshold
     return sigmoid(weighted_sum)
 
-output = perceptron()
-print("Result: "+str(output))
-
-output = sigmoid_neuron()
-print("Result: " +str(output))
