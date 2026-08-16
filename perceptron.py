@@ -20,8 +20,8 @@ def perceptron():
     return step(weighted_sum)
 
 def sigmoid(weighted_sum):
-    output = 1 /(1+ (np.exp(-weighted_sum)))
-    return output
+    classfication  = 1.0 /(1.0+ (np.exp(-weighted_sum)))
+    return classfication
 
 def sigmoid_neuron():
     weighted_sum = 0
