@@ -6,10 +6,9 @@ class Network(object):
     def __init__(self, size):
         self.num_layers = len(size)
         self.size = size
-        self.b = [np.random.randn(y, 1)
-                  for y in size[1:]]
-        self.w = [np.random.randn(y, x)
-                  for x, y in zip(size[:-1], size[1:])]
+
+        self.b = [np.random.randn(y, 1)for y in size[1:]]
+        self.w = [np.random.randn(y, x)for x, y in zip(size[:-1], size[1:])]
 
     def feedforward(self, a):
 
@@ -28,19 +27,12 @@ class Network(object):
 
         for j in range(epochs):
             random.shuffle(training_data)
-            mini_batches = [
-                training_data[k:k + mini_batch_size]
-                for k in range(0, n, mini_batch_size)
-            ]
+            mini_batches = [training_data[k:k + mini_batch_size] for k in range(0, n, mini_batch_size)]
             for mini_batch in mini_batches:
                 self.update_mini_batch(mini_batch, eta)
-
             if test_data:
                 print(
-                    "Epoch {0}: {1} / {2}".format(
-                        j,
-                        self.evaluate(test_data),n_test
-                    )
+                    "Epoch {0}: {1} / {2}".format(j,self.evaluate(test_data),n_test)
                 )
             else:
                 print("Epoch {0} complete".format(j))
@@ -59,8 +51,7 @@ class Network(object):
                 nw + dnw
                 for nw, dnw in zip(nabla_w, delta_nabla_w)
             ]
-        self.w = [
-            w - (eta / len(mini_batch)) * nw
+        self.w = [w - (eta / len(mini_batch)) * nw
             for w, nw in zip(self.w, nabla_w)
         ]
         self.b = [
